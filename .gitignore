@@ -1,0 +1,3 @@
+recipebook/.env
+recipebook/db.sqlite3
+recipebook-env/
