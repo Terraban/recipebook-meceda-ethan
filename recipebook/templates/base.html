@@ -2,6 +2,18 @@
     <head>
         <h1>Recipe Book</h1>
     </head>
+
+    {% if request.user.is_authenticated %}
+        <h4>Welcome, {{ request.user }}! :D</h4>
+        <form method = "POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type = "submit">Logout</button>
+        </form>
+    {% else %}
+        <a href = "{% url 'login' %}">Login</a>
+        <a href = "{% url 'password_reset' %}">Forgot Password</a>
+    {% endif %}
+
     <body>
         {% block content %}
         {% endblock %}
