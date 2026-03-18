@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from useraccount.models import Profile
 
 # Create your models here.
 
@@ -20,9 +21,9 @@ class Recipe(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     
     author = models.ForeignKey(
-        User,
+        Profile,
         on_delete = models.CASCADE,
-        related_name = 'recipe'
+        related_name = 'recipes'
     )
     
     def __str__(self):
