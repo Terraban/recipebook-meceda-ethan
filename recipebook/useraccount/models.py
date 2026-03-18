@@ -16,3 +16,6 @@ class Profile(models.Model):
         blank = True,
         validators = [MinLengthValidator(256)]
     )
+    
+    def __str__(self):
+        return f"{self.name}"

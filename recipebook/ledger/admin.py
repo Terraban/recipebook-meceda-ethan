@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from . models import Recipe, RecipeIngredient
+from . models import Recipe, RecipeIngredient, RecipeImage
 
 class TaskInLine(admin.TabularInline):
     model = RecipeIngredient
@@ -11,4 +11,16 @@ class RecipeAdmin(admin.ModelAdmin):
         TaskInLine,
     ]
 
+class RecipeImageAdmin(admin.ModelAdmin):
+    model = RecipeImage
+
+    fieldsets = [
+        ("Details", 
+            {'fields':
+                ['recipe_image', 'description', 'recipe']
+            }
+        )
+    ]
+
 admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(RecipeImage, RecipeImageAdmin)

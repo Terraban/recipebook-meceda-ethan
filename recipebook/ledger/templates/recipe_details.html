@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h2>{{recipe.name}}</h2>
-<h4>By {{recipe.author}}</h4>
 
-<ul>
-{% for ingredient in object.ingredients.all %}
-    <li>{{ ingredient.ingredient.name }} {{ ingredient.quantity }}</li>
-{% endfor %}
-</ul>
+    <h2>{{recipe.name}}</h2>
+    <h4>By {{recipe.author}}</h4>
+
+    <body>
+        {% for img in recipe.images.all %}
+            <div class = "recipe-image">
+                <img src="{{ img.recipe_image.url }}" alt="{{ img.description }}" style="max-width:1000px, max-height:500px">
+            </div>
+        {% endfor %}
+    </body>
+
+    <ul>
+        {% for ingredient in object.ingredients.all %}
+            <li>{{ ingredient.ingredient.name }} {{ ingredient.quantity }}</li>
+        {% endfor %}
+    </ul>
+
+    <u2> 
+        <li> <a href="{% url 'ledger:recipe_add_image' recipe.pk%}"> Add new image </a></li>
+        <li> <a href="{% url 'ledger:recipes_list' %}"> Back to list </a></li>
+    </u2>
 
 {% endblock %}
